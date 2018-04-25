@@ -176,12 +176,12 @@ namespace GitHubExtension.Clients
         /// <returns></returns>
         public async Task<bool> Merged(int number)
         {
-           return await _githubClient.PullRequest.Merged(_owner, _name, number);
+            return await _githubClient.PullRequest.Merged(_owner, _name, number);
         }
 
         #endregion
 
-        #region pull request file
+        #region file
 
         /// <summary>
         /// Gets files by number.
@@ -191,6 +191,16 @@ namespace GitHubExtension.Clients
         public async Task<IEnumerable<PullRequestFile>> GetFilesAsync(int number)
         {
             return await _githubClient.PullRequest.Files(_owner, _name, number);
+        }
+
+        /// <summary>
+        /// Gets a file or directory.
+        /// </summary>
+        /// <param name="path">The path to the file.</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<RepositoryContent>> GetAllFilesAsync(string path)
+        {
+            return await _githubClient.Repository.Content.GetAllContents(_owner, _name, path);
         }
 
         /// <summary>
