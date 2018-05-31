@@ -10,7 +10,7 @@ namespace GitHubExtension
 {
     public class GitHubManager
     {
-        private readonly IGitHubClient _githubClient;
+        public readonly IGitHubClient _githubClient;
 
         public GitHubManager(string token)
         {

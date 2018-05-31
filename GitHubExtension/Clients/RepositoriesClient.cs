@@ -329,5 +329,60 @@ namespace GitHubExtension.Clients
         }
 
         #endregion
+
+        #region webhook
+
+        /// <summary>
+        ///  Gets a single hook by Id.
+        /// </summary>
+        /// <param name="hookId">The repository's hook id.</param>
+        /// <returns></returns>
+        public async Task<RepositoryHook> GetRepositoryHook(int hookId)
+        {
+
+            return await _githubClient.Repository.Hooks.Get(_owner, _name, hookId);
+        }
+
+        /// <summary>
+        /// Gets the list of hooks defined for a repository.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<RepositoryHook>> GetAllRepositoryHooks()
+        {
+            return await _githubClient.Repository.Hooks.GetAll(_owner, _name);
+        }
+
+        /// <summary>
+        ///  Enables a hook for a repository
+        /// </summary>
+        /// <param name="hookId">The repository's hook id</param>
+        /// <returns></returns>
+        public async Task<RepositoryHook> EnableRepositoryHook(int hookId)
+        {
+            var hook = new EditRepositoryHook
+            {
+                Active = true
+            };
+
+            return await _githubClient.Repository.Hooks.Edit(_owner, _name, hookId, hook);
+        }
+
+        /// <summary>
+        ///  Disables a hook for a repository
+        /// </summary>
+        /// <param name="hookId">The repository's hook id</param>
+        /// <returns></returns>
+        public async Task<RepositoryHook> DisableRepositoryHook(int hookId)
+        {
+            var hook = new EditRepositoryHook
+            {
+                Active = false
+            };
+
+            return await _githubClient.Repository.Hooks.Edit(_owner, _name, hookId, hook);
+        }
+
+        #endregion
+
     }
 }
