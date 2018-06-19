@@ -8,6 +8,11 @@ namespace GitHubExtension.Clients
     {
         private readonly IGitHubAppsClient _gitHubAppsClient;
 
+        public GitHubAppsClient(IGitHubAppsClient gitHubAppsClient)
+        {
+            this._gitHubAppsClient = gitHubAppsClient;
+        }
+
         /// <summary>
         /// Create a time bound access token for a GitHubApp Installation that can be used to access other API endpoints (requires GitHubApp JWT token auth).
         /// </summary>
@@ -17,7 +22,7 @@ namespace GitHubExtension.Clients
         /// https://developer.github.com/v3/apps/available-endpoints/
         /// </remarks>
         /// <returns></returns>
-        public async Task<AccessToken> CreateInstallationToken(long installationId)
+        public async Task<AccessToken> CreateInstallationTokenAsync(long installationId)
         {
             return await _gitHubAppsClient.CreateInstallationToken(installationId);
         }
@@ -30,7 +35,7 @@ namespace GitHubExtension.Clients
         /// https://developer.github.com/v3/apps/#get-a-single-github-app
         /// </remarks>
         /// <returns></returns>
-        public async Task<GitHubApp> Get(string slug)
+        public async Task<GitHubApp> GetAsync(string slug)
         {
             return await _gitHubAppsClient.Get(slug);
         }
@@ -42,7 +47,7 @@ namespace GitHubExtension.Clients
         /// https://developer.github.com/v3/apps/#find-installations
         /// </remarks>
         /// <returns></returns>
-        public async Task<IReadOnlyList<Installation>> GetAllInstallationsForCurrent()
+        public async Task<IReadOnlyList<Installation>> GetAllInstallationsForCurrentAsync()
         {
             return await _gitHubAppsClient.GetAllInstallationsForCurrent();
         }
@@ -54,7 +59,7 @@ namespace GitHubExtension.Clients
         /// https://developer.github.com/v3/apps/#get-the-authenticated-github-app
         /// </remarks>
         /// <returns></returns>
-        public async Task<GitHubApp> GetCurrent()
+        public async Task<GitHubApp> GetCurrentAsync()
         {
             return await _gitHubAppsClient.GetCurrent();
         }

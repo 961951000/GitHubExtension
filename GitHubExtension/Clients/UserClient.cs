@@ -7,6 +7,11 @@ namespace GitHubExtension.Clients
     {
         private readonly IUsersClient _userClient;
 
+        public UserClient(IUsersClient userClient)
+        {
+            this._userClient = userClient;
+        }
+
         /// <summary>
         /// Returns a Octokit.User for the current authenticated user.
         /// </summary>

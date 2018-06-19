@@ -190,7 +190,7 @@ namespace GitHubExtension.Clients
         /// https://developer.github.com/v3/pulls/#merge-a-pull-request-merge-buttontrade
         /// </remarks>
         /// <returns></returns>
-        public async Task Merge(int number, string title, string message)
+        public async Task MergeAsync(int number, string title, string message)
         {
             await _githubClient.PullRequest.Merge(_owner, _name, number, new MergePullRequest
             {
@@ -207,7 +207,7 @@ namespace GitHubExtension.Clients
         /// https://developer.github.com/v3/pulls/#get-if-a-pull-request-has-been-merged
         /// </remarks>
         /// <returns></returns>
-        public async Task<bool> Merged(int number)
+        public async Task<bool> MergedAsync(int number)
         {
             return await _githubClient.PullRequest.Merged(_owner, _name, number);
         }
@@ -247,7 +247,7 @@ namespace GitHubExtension.Clients
         /// https://developer.github.com/v3/git/blobs/#get-a-blob
         /// </remarks>
         /// <returns></returns>
-        public async Task<string> GetFileContent(string sha)
+        public async Task<string> GetFileContentAsync(string sha)
         {
             var blob = await _githubClient.Git.Blob.Get(_owner, _name, sha);
             var fileData = Convert.FromBase64String(blob.Content);
@@ -385,7 +385,7 @@ namespace GitHubExtension.Clients
         /// </summary>
         /// <param name="hookId">The repository's hook id.</param>
         /// <returns></returns>
-        public async Task<RepositoryHook> GetRepositoryHook(int hookId)
+        public async Task<RepositoryHook> GetRepositoryHookAsync(int hookId)
         {
 
             return await _githubClient.Repository.Hooks.Get(_owner, _name, hookId);
@@ -395,7 +395,7 @@ namespace GitHubExtension.Clients
         /// Gets the list of hooks defined for a repository.
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<RepositoryHook>> GetAllRepositoryHooks()
+        public async Task<IEnumerable<RepositoryHook>> GetAllRepositoryHooksAsync()
         {
             return await _githubClient.Repository.Hooks.GetAll(_owner, _name);
         }
@@ -405,7 +405,7 @@ namespace GitHubExtension.Clients
         /// </summary>
         /// <param name="hookId">The repository's hook id</param>
         /// <returns></returns>
-        public async Task<RepositoryHook> EnableRepositoryHook(int hookId)
+        public async Task<RepositoryHook> EnableRepositoryHookAsync(int hookId)
         {
             var hook = new EditRepositoryHook
             {
@@ -420,7 +420,7 @@ namespace GitHubExtension.Clients
         /// </summary>
         /// <param name="hookId">The repository's hook id</param>
         /// <returns></returns>
-        public async Task<RepositoryHook> DisableRepositoryHook(int hookId)
+        public async Task<RepositoryHook> DisableRepositoryHookAsync(int hookId)
         {
             var hook = new EditRepositoryHook
             {

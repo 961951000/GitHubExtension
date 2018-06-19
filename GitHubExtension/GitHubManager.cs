@@ -40,7 +40,7 @@ namespace GitHubExtension
         /// <returns></returns>
         public Clients.UserClient User()
         {
-            return new Clients.UserClient();
+            return new Clients.UserClient(_githubClient.User);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace GitHubExtension
         /// <returns></returns>
         public Clients.GitHubAppsClient GitHubAppsClient()
         {
-            return new Clients.GitHubAppsClient();
+            return new Clients.GitHubAppsClient(_githubClient.GitHubApps);
         }
 
         /// <summary>
