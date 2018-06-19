@@ -41,7 +41,7 @@ namespace GitHubExtension.Clients
         }
 
         /// <summary>
-        ///  Gets all the branches for the specified repository.
+        /// Gets all the branches for the specified repository.
         /// </summary>
         /// <returns></returns>
         public async Task<IEnumerable<Branch>> GetAllBranchAsync()
@@ -54,6 +54,9 @@ namespace GitHubExtension.Clients
         /// </summary>
         /// <param name="branch">The name of the branch.</param>
         /// <param name="baseRef">The baseRef value to set this reference branch to.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/git/refs/#create-a-reference
+        /// </remarks>
         /// <returns></returns>
         public async Task<Reference> CreateBranchAsync(string branch, string baseRef)
         {
@@ -66,6 +69,9 @@ namespace GitHubExtension.Clients
         /// Deletes a branch.
         /// </summary>
         /// <param name="branch">The name of the branch.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/git/refs/#delete-a-reference
+        /// </remarks>
         /// <returns></returns>
         public async Task DeleteBranchAsync(string branch)
         {
@@ -79,6 +85,9 @@ namespace GitHubExtension.Clients
         /// <summary>
         /// Get all open pull requests for the repository.
         /// </summary>
+        /// <remarks>
+        /// https://developer.github.com/v3/pulls/#list-pull-requests
+        /// </remarks>
         /// <returns></returns>
         public async Task<IEnumerable<PullRequest>> GetAllOpenPullRequestsAsync()
         {
@@ -88,6 +97,9 @@ namespace GitHubExtension.Clients
         /// <summary>
         /// Get a pull request by number.
         /// </summary>
+        /// <remarks>
+        /// https://developer.github.com/v3/pulls/#get-a-single-pull-request
+        /// </remarks>
         /// <returns></returns>
         public async Task<PullRequest> GetPullRequestAsync(int number)
         {
@@ -100,6 +112,9 @@ namespace GitHubExtension.Clients
         /// <param name="title">The title of the pull request.</param>
         /// <param name="branch">The name of the branch.</param>
         /// <param name="baseRef">The baseRef value to set this reference branch to.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/pulls/#create-a-pull-request
+        /// </remarks>
         /// <returns></returns>
         public async Task<PullRequest> CreatePullRequestAsync(string title, string branch, string baseRef)
         {
@@ -113,6 +128,9 @@ namespace GitHubExtension.Clients
         /// <param name="branch">The name of the branch.</param>
         /// <param name="body">The body of the pull request.</param>
         /// <param name="baseRef">The baseRef value to set this reference branch to.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/pulls/#create-a-pull-request
+        /// </remarks>
         /// <returns></returns>
         public async Task<PullRequest> CreatePullRequestAsync(string title, string body, string branch, string baseRef)
         {
@@ -126,6 +144,9 @@ namespace GitHubExtension.Clients
         /// Open a pull request.
         /// </summary>
         /// <param name="number">The number of the pull request.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/pulls/#update-a-pull-request
+        /// </remarks>
         /// <returns></returns>
         public async Task OpenPullRequestAsync(int number)
         {
@@ -136,6 +157,9 @@ namespace GitHubExtension.Clients
         /// Close a pull request.
         /// </summary>
         /// <param name="number">The number of the pull request.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/pulls/#update-a-pull-request
+        /// </remarks>
         /// <returns></returns>
         public async Task ClosePullRequestAsync(int number)
         {
@@ -147,6 +171,9 @@ namespace GitHubExtension.Clients
         /// </summary>
         /// <param name="number">The number of the pull request.</param>
         /// <param name="title">Title of the pull request.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/pulls/#update-a-pull-request
+        /// </remarks>
         /// <returns></returns>
         public async Task<PullRequest> UpdatePullRequestTitleAsync(int number, string title)
         {
@@ -159,6 +186,9 @@ namespace GitHubExtension.Clients
         /// <param name="number">The number of the pull request.</param>
         /// <param name="title">The title for the automatic commit message.</param>
         /// <param name="message">The message that will be used for the merge commit.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/pulls/#merge-a-pull-request-merge-buttontrade
+        /// </remarks>
         /// <returns></returns>
         public async Task Merge(int number, string title, string message)
         {
@@ -173,6 +203,9 @@ namespace GitHubExtension.Clients
         /// Get the pull request merge status.
         /// </summary>
         /// <param name="number">The number of the pull request.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/pulls/#get-if-a-pull-request-has-been-merged
+        /// </remarks>
         /// <returns></returns>
         public async Task<bool> Merged(int number)
         {
@@ -187,6 +220,9 @@ namespace GitHubExtension.Clients
         /// Gets files by number.
         /// </summary>
         /// <param name="number">The number of the pull request.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/pulls/#list-pull-requests-files
+        /// </remarks>
         /// <returns></returns>
         public async Task<IEnumerable<PullRequestFile>> GetFilesAsync(int number)
         {
@@ -207,6 +243,9 @@ namespace GitHubExtension.Clients
         /// Gets a single Blob by SHA.
         /// </summary>
         /// <param name="sha">The sha value of the blob.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/git/blobs/#get-a-blob
+        /// </remarks>
         /// <returns></returns>
         public async Task<string> GetFileContent(string sha)
         {
@@ -301,6 +340,9 @@ namespace GitHubExtension.Clients
         /// Gets comments by number.
         /// </summary>
         /// <param name="number">The number of the pull request.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/issues/comments/#list-comments-on-an-issue
+        /// </remarks>
         /// <returns></returns>
         public async Task<IEnumerable<IssueComment>> GetCommentsAsync(int number)
         {
@@ -312,6 +354,9 @@ namespace GitHubExtension.Clients
         /// </summary>
         /// <param name="number">The number of the pull request.</param>
         /// <param name="comment">The comment to add to the issue.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/issues/comments/#create-a-comment
+        /// </remarks>
         /// <returns></returns>
         public async Task<IssueComment> CreateCommentAsync(int number, string comment)
         {
@@ -322,6 +367,9 @@ namespace GitHubExtension.Clients
         /// Deletes a comment.
         /// </summary>
         /// <param name="id">The comment id.</param>
+        /// <remarks>
+        /// https://developer.github.com/v3/issues/comments/#delete-a-comment
+        /// </remarks>
         /// <returns></returns>
         public async Task DeleteCommentAsync(int id)
         {
@@ -333,7 +381,7 @@ namespace GitHubExtension.Clients
         #region webhook
 
         /// <summary>
-        ///  Gets a single hook by Id.
+        /// Gets a single hook by Id.
         /// </summary>
         /// <param name="hookId">The repository's hook id.</param>
         /// <returns></returns>
@@ -353,7 +401,7 @@ namespace GitHubExtension.Clients
         }
 
         /// <summary>
-        ///  Enables a hook for a repository
+        /// Enables a hook for a repository
         /// </summary>
         /// <param name="hookId">The repository's hook id</param>
         /// <returns></returns>
@@ -368,7 +416,7 @@ namespace GitHubExtension.Clients
         }
 
         /// <summary>
-        ///  Disables a hook for a repository
+        /// Disables a hook for a repository
         /// </summary>
         /// <param name="hookId">The repository's hook id</param>
         /// <returns></returns>
@@ -383,6 +431,5 @@ namespace GitHubExtension.Clients
         }
 
         #endregion
-
     }
 }
